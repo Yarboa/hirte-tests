@@ -1,0 +1,42 @@
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream9
+      options: --privileged
+    steps:
+      - name: Enable additional repositories
+        run: |
+          dnf install -y dnf-plugin-config-manager
+
+          # CRB and EPEL are required for tmt
+          dnf config-manager -y --set-enabled crb
+          dnf install -y epel-release
+
+          # Development version of tmm is required because of https://github.com/teemtee/tmt/pull/1930
+          dnf copr -y enable psss/tmt
+
+      - name: Install dependencies
+        run: |
+          dnf install \
+                  tmt \
+                  tmt-provision-container \
+              -y
+
+      - name: Checkout sources
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          # Use githash of a tested commit instead of merge commit
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Run tests
+        run: |
+          tmt run
