@@ -1,0 +1,9 @@
+summary: Basic functionality tests - tier0
+discover:
+    how: fmf
+    filter: tier:0
+provision:
+    how: container
+    image: centos:stream9
+execute:
+    how: tmt
