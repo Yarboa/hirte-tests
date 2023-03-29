@@ -1,6 +1,6 @@
 #!/bin/bash
 
-podman build -f ./scripts/Containerfile -t hirte-image .
+podman build -f ./containers/$CONTAINER_USED -t hirte-image .
 
 podman network create --subnet $TEST_NET_RANGE hirte-test
 podman run -d --net hirte-test --rm -p $MGR_ADD:$MGR_ADD --name hirte-mgr \
