@@ -3,7 +3,16 @@ discover:
     how: fmf
     filter: tier:0
 provision:
-    how: container
-    image: centos:stream9
+    how: local 
+prepare:
+  - name: Install podman
+    how: install
+    package: podman    
+  - name: Set containers setup
+    how: shell
+    script: |
+        bash ./scripts/tests-setup.sh
 execute:
     how: tmt
+report:
+    how: junit

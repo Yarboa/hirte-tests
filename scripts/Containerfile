@@ -1,0 +1,6 @@
+FROM registry.gitlab.com/centos/automotive/sample-images/hirte/hirte-builder:1.0.0
+RUN dnf install -y hirte hirte-agent hirte-ctl
+CMD [ "/sbin/init" ]
+
+WORKDIR /hirte
+
