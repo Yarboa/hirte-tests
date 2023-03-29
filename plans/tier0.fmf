@@ -4,6 +4,9 @@ discover:
     filter: tier:0
 provision:
     how: local 
+environment:
+    TEST_NET_RANGE: 10.10.0.0/24
+    MGR_ADD: 10.10.0.2 
 prepare:
   - name: Install podman
     how: install

@@ -28,7 +28,7 @@ jobs:
           dnf install \
                   tmt \
                   tmt-provision-container \
-                  tmt-report-junit
+                  tmt-report-junit \
               -y
 
       - name: Checkout sources
