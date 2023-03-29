@@ -7,7 +7,7 @@ provision:
 environment:
     CONTAINER_USED: container-hirte-snapshot
     TEST_NET_RANGE: 10.10.0.0/24
-    MGR_ADD: 10.10.0.2
+    MGR_PORT: 8420
 prepare:
   - name: Install podman
     how: install
