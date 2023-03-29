@@ -41,3 +41,10 @@ jobs:
       - name: Run tests
         run: |
           tmt run
+
+      - name: Export tests output
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: /var/tmp/tmt
