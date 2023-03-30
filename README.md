@@ -4,7 +4,7 @@ Integration tests for [hirte systemd service controller](https://github.com/cont
 
 ## tmt test framework
 Integration tests executed with [tmt framework](https://github.com/teemtee/tmt) 
-Tests can be siscovered by plans through tmt metadata specifications
+Tests can be discovered by plans through tmt metadata specifications
 
 - Install tmt
 

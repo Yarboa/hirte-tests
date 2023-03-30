@@ -9,6 +9,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'  
+
       - name: Install dependencies
         run: |
           sudo apt-get update
@@ -19,15 +24,14 @@ jobs:
                   libvirt-dev \
                   pkg-config \
                   podman \
-                  python3-pip \
                   qemu-kvm \
               -y
 
       - name: Install tmt from PyPi
         run: |
-          sudo pip3 install "tmt[provision]" "tmt[report-junit]"
           # Remove when https://github.com/teemtee/tmt/pull/1930 is released in tmt 1.22
-          sudo pip3 install git+https://github.com/teemtee/tmt.git@main
+          pip install git+https://github.com/teemtee/tmt.git@main
+          pip install "tmt[provision]" "tmt[report-junit]"
 
       - name: Checkout sources
         uses: actions/checkout@v3
