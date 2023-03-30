@@ -9,9 +9,6 @@ environment:
     TEST_NET_RANGE: 10.10.0.0/24
     MGR_PORT: 8420
 prepare:
-  - name: Install podman
-    how: install
-    package: podman
   - name: Set containers setup
     how: shell
     script: |
